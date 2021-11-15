@@ -10,7 +10,7 @@ namespace SC.DevChallenge.Services
 {
     public class CSVParseService : ICSVParseService
     {
-        private readonly string path = @"../SC.DevChallenge.Api/Input/data.csv";
+        private readonly string path = @"Input/data.csv";
         private readonly ITransactionService _transactionService;
 
         public CSVParseService(ITransactionService transactionService)
@@ -38,7 +38,7 @@ namespace SC.DevChallenge.Services
                     Portfolio = fields[0],
                     InstrumentOwner = fields[1],
                     Instrument = fields[2],
-                    Date = DateTime.Parse(fields[3]),
+                    Date = DateTime.ParseExact(fields[3],"dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
                     Price = Convert.ToDecimal(fields[4], new CultureInfo("en-US"))
                 });
             }
